@@ -1,6 +1,7 @@
 package sqlstore
 
 import (
+	"awesomeProject/internal/store"
 	"database/sql"
 	_ "github.com/lib/pq"
 )
@@ -16,12 +17,14 @@ func New(db *sql.DB) *Store {
 	}
 }
 
-func (s *Store) User() *UserRepository {
+func (s *Store) User() store.UserRepository {
 	if s.userRepository != nil {
 		return s.userRepository
 	}
+
 	s.userRepository = &UserRepository{
 		store: s,
 	}
+
 	return s.userRepository
 }
