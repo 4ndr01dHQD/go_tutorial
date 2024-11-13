@@ -1,16 +1,19 @@
 package teststore
 
-import "awesomeProject/internal/app/model"
+import (
+	"awesomeProject/internal/app/model"
+	"awesomeProject/internal/store"
+)
 
 type Store struct {
 	userRepository *UserRepository
 }
 
-func New() *Store {
+func New() store.Store {
 	return &Store{}
 }
 
-func (s *Store) User() *UserRepository {
+func (s *Store) User() store.UserRepository {
 	if s.userRepository != nil {
 		return s.userRepository
 	}
